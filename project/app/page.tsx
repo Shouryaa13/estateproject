@@ -1,24 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants, easeInOut } from "framer-motion";
 
 export default function HomePage() {
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { staggerChildren: 0.15, ease: "easeInOut" }, // updated
+      transition: { staggerChildren: 0.15, ease: easeInOut },
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeInOut" }, // updated
-    },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeInOut } },
   };
 
   return (
@@ -40,18 +36,18 @@ export default function HomePage() {
         className="max-w-2xl w-full p-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_0_25px_rgba(255,255,255,0.1)] relative z-10"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeInOut" }} // updated
+        transition={{ duration: 1, ease: easeInOut }}
       >
         {/* Floating orbs for luxury glow */}
         <motion.div
           className="absolute -top-28 -left-20 w-80 h-80 bg-gradient-to-r from-gray-700 to-gray-900 rounded-full blur-3xl opacity-20"
           animate={{ x: [0, 25, 0], y: [0, 20, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 9, repeat: Infinity, ease: easeInOut }}
         />
         <motion.div
           className="absolute -bottom-28 -right-20 w-80 h-80 bg-gradient-to-r from-black to-gray-800 rounded-full blur-3xl opacity-20"
           animate={{ x: [0, -25, 0], y: [0, -20, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 11, repeat: Infinity, ease: easeInOut }}
         />
 
         <motion.h1
@@ -87,20 +83,11 @@ export default function HomePage() {
             <motion.li key={i} variants={item}>
               <motion.a
                 href={btn.href}
-                whileHover={{ scale: 1.08, y: -3, boxShadow: `0 0 25px var(--tw-shadow-color)` }}
+                whileHover={{ scale: 1.08, y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 className={`block w-full text-center bg-gradient-to-r ${btn.gradient} font-semibold py-4 px-8 rounded-full shadow-lg relative overflow-hidden`}
-                style={{
-                  "--tw-shadow-color": `rgba(200,200,200,0.6)`,
-                }}
               >
-                <span className="relative z-10">{btn.label}</span>
-                <motion.div
-                  className="absolute inset-0 bg-white/10 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 0.2 }}
-                  transition={{ duration: 0.3 }}
-                />
+                {btn.label}
               </motion.a>
             </motion.li>
           ))}
