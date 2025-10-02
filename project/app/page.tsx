@@ -8,13 +8,17 @@ export default function HomePage() {
     show: {
       opacity: 1,
       y: 0,
-      transition: { staggerChildren: 0.15, ease: "easeOut" },
+      transition: { staggerChildren: 0.15, ease: "easeInOut" }, // updated
     },
   };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeInOut" }, // updated
+    },
   };
 
   return (
@@ -36,7 +40,7 @@ export default function HomePage() {
         className="max-w-2xl w-full p-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_0_25px_rgba(255,255,255,0.1)] relative z-10"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 1, ease: "easeInOut" }} // updated
       >
         {/* Floating orbs for luxury glow */}
         <motion.div
@@ -75,10 +79,10 @@ export default function HomePage() {
           className="space-y-6"
         >
           {[
-            { href: "/lead", label: "✍ Lead Form (User Signup)", gradient: "from-gray-800 via-gray-700 to-gray-800", glow: "gray-400" },
-            { href: "/listings", label: "📋 View Listings", gradient: "from-gray-700 via-gray-600 to-gray-700", glow: "gray-300" },
-            { href: "/visit", label: "📅 Book a Visit", gradient: "from-gray-900 via-gray-700 to-gray-900", glow: "gray-400" },
-            { href: "/inquiry", label: "🔍 Property Inquiry", gradient: "from-black via-gray-800 to-black", glow: "gray-500" },
+            { href: "/lead", label: "✍ Lead Form (User Signup)", gradient: "from-gray-800 via-gray-700 to-gray-800" },
+            { href: "/listings", label: "📋 View Listings", gradient: "from-gray-700 via-gray-600 to-gray-700" },
+            { href: "/visit", label: "📅 Book a Visit", gradient: "from-gray-900 via-gray-700 to-gray-900" },
+            { href: "/inquiry", label: "🔍 Property Inquiry", gradient: "from-black via-gray-800 to-black" },
           ].map((btn, i) => (
             <motion.li key={i} variants={item}>
               <motion.a
