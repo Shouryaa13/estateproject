@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
+  id        Int       @id @default(autoincrement())
   name      String
   email     String    @unique
   phone     String
@@ -18,19 +18,19 @@ model User {
 }
 
 model Inquiry {
-  id           String   @id @default(cuid())
+  id           Int      @id @default(autoincrement())
   budget       Int
   location     String
   propertyType String
   createdAt    DateTime @default(now())
-  userId       String
-  propertyId   String?
+  userId       Int
+  propertyId   Int?
   property     Listing? @relation(fields: [propertyId], references: [id])
   user         User     @relation(fields: [userId], references: [id])
 }
 
 model Listing {
-  id           String    @id @default(cuid())
+  id           Int       @id @default(autoincrement())
   title        String
   description  String
   location     String
@@ -38,17 +38,17 @@ model Listing {
   propertyType String
   createdAt    DateTime  @default(now())
   inquiries    Inquiry[]
-  visits       Visit[]
+  visits       Visit[]   @relation("ListingVisits") // Rename relation
 }
 
 model Visit {
-  id        String   @id @default(cuid())
-  userId    String
+  id        Int      @id @default(autoincrement()) // Use Int to match User.id
+  userId    Int
   user      User     @relation(fields: [userId], references: [id])
-  listingId String
-  listing   Listing  @relation(fields: [listingId], references: [id])
+  listingId Int
+  listing   Listing  @relation("ListingVisits", fields: [listingId], references: [id])
   date      DateTime
-  status    String   @default("pending") // pending, completed, cancelled
+  status    String   @default("pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
