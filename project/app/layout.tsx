@@ -1,4 +1,3 @@
-
 import './globals.css';
 import { Inter } from 'next/font/google';
 import React from 'react';
@@ -11,11 +10,11 @@ export const metadata = {
   description: 'Admin Dashboard for Visits, Inquiries, and Listings',
 };
 
-export default function RootLayout({ children, session }: { children: React.ReactNode, session?: any }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session}>
+        <SessionProvider>
           {children}
         </SessionProvider>
       </body>
