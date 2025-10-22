@@ -1,7 +1,9 @@
-// app/layout.tsx
+"use client";
+
 import './globals.css';
 import { Inter } from 'next/font/google';
 import React from 'react';
+import { SessionProvider } from 'next-auth/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -10,11 +12,13 @@ export const metadata = {
   description: 'Admin Dashboard for Visits, Inquiries, and Listings',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, session }: { children: React.ReactNode, session?: any }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <SessionProvider session={session}>
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
